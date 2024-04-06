@@ -3,33 +3,48 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Comunities;
+use App\Models\Comunity;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\chatmodel;
+use Illuminate\Support\Facades\Artisan;
+
+
 
 class ComunityController extends Controller
 {
     public function create(Request $req){
         $req->validate([
             'type' => 'nullable|string|in:school,work,personal',
+            'nome' => 'string|max:50'
+
+
         ]);
-    Comunities::create([
+
+if(Auth::check()){
+    $adminName = Auth::user()->name;
+
+}
+Comunity::create([
             'nome' => $req->nome,
-            'type' => $req->type
+            'type' => $req->type,
+            'admin' => $adminName
         ]);
 
-        $code = Comunities::latest()->value('code');
+        $code = Comunity::latest()->value('code');
 
-        return redirect()->route('home.page', ['code' => $code]);
+
+
+        return redirect()->route('comunity-template', ['code' => $code]);
 
     }
 
     public function getComunity($code){
 
-        $name = Comunities::where('code', $code)->value('nome');
-        $typof = Comunities::where('code', $code)->value('type');
+        $name = Comunity::where('code', $code)->value('nome');
+        $typof = Comunity::where('code', $code)->value('type');
         
         return view('comunities/comunity-template', [
     'comunityName'=> $name,
@@ -41,7 +56,7 @@ class ComunityController extends Controller
 
 public function routeMaintain(Request $req, $code){
         $routename = $req->route()->getName();
-        $ComunityName = Comunities::where('code', $code)->value('nome');
+        $ComunityName = Comunity::where('code', $code)->value('nome');
 
 
 
@@ -63,24 +78,38 @@ public function routeMaintain(Request $req, $code){
         ]);
     }
 
-    public function chatpost(Request $req){
+    public function chatpost(Request $req, $code){
         $message = $req->input('message');
+        $ComunityName = Comunity::where('code', $code)->value('nome');
+
+
 if(Auth::check()){
             $sendby = Auth::user()->name;
+
+
             return view('response', [
-                'sendby'=> $sendby,
-                'message' => $message
-            ]); 
+                'message' => $message,
+                'sendby' => $sendby,
+                'ComunityName' => $ComunityName
+            ]);
+
+            // chatmodel::post([
+            //     'message' => $message,
+            //     'sendby' => $sendby,
+            //     'comunityName' => $ComunityName
+            // ]);
+
         } else{
             return response()->json(['error' => 'no user nigaaaa'], 401); 
         }
 
     }
-
     public function codeinput(Request $req){
-        $code = $req->ComunityId;
+        $code = $req->input('ComunityId');
 
-        return redirect()->route('comunity-template', ['code'=> $code]);
+        return redirect()->route('comunity-template', [
+            'code' => $code
+        ]);
     }
 
 }

@@ -8,5 +8,15 @@ Route::get('/signup', function(){
 })->name('register.route');
 
 Route::post('/register',[UserController::class, 'save']
-)->name('save.student');
+)->name('save.user');
 
+Route::get('/login', function(){
+    return view('signup-login/login');
+})->name('login.route');
+
+Route::post('/loginValidate', [UserController::class, 'login'])->name('validate.route');
+
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
+
+// como posso criar um auth próprio para captar dados de um outro tipo de registro, sem ser do tipo usuário?

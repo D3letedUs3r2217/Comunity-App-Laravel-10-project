@@ -38,14 +38,20 @@
 </div>
 
 
+
+
 </main>
 
 
-    
+    <div id="shareIcon" class="shareIcon">
+        <button id="sharecodebtn"><i class="fa-solid fa-share"></i></button>
+    </div>
     </section>
 
+    <div id="codeShare" class="shareCode">
+        <h2>Code: {{$code}}</h2>
+    </div>
     <script src="{{ asset('js/comunityMain.js') }}"></script>
-
 
 </body>
 </html>

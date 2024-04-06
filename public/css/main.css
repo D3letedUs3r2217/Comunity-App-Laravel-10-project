@@ -36,6 +36,7 @@ body{
     flex-direction: column;
     position: relative;
     overflow: auto;
+    border-radius: 5px;
 }
 
 .workPlace{
@@ -73,14 +74,6 @@ aside{
     align-items: center;
     justify-content: center;
 }
-
-/* main{
-    color: rgb(16, 41, 16);
-    align-self: center;
-    width: 90%;
-    text-align: center;
-    line-height: 10px;
-} */
 
 #addbtn{
     font-size: 3rem;
@@ -257,4 +250,35 @@ aside{
     margin-left: 10px;
 }
 
+.shareCode{
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 35%;
+    height: 15vh;
+    border-radius: 10px;
+    background-color: white;
+    font-size: 1.3rem;
+    box-shadow: 10px 10px 30px rgb(27, 27, 27);
+}
 
+#sharecodebtn{
+    background: none;
+    border: none;
+}
+.shareIcon{
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    display: flex;
+}
+.shareIcon i {
+    font-size: 2.8rem;
+    color: white;
+    cursor: pointer;
+}
+
+.inactive-class{
+    display: flex;
+}

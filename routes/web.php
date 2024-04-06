@@ -21,7 +21,5 @@ require __DIR__.'\comunities\comunity.php';
 Route::get('/', function(){
     return redirect()->route('register.route');
 });
-Route::get('/responseGeneral', function(){
-    return view('response', []);
-})->name('response.route');
+
 

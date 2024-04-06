@@ -10,9 +10,8 @@ Route::prefix('/comunity/{code}')->group(function(){
         Route::get('/chat', [ComunityController::class, 'routeMaintain'])->name('comunity-chat');
         Route::post('/postchat', [ComunityController::class, 'chatpost'])->name('post.message');
         Route::get('/dashboard', [ComunityController::class, 'routeMaintain'])->name('comunity-dashboard');
-
         
-})->name('comunityroute');
+});
 
 
 

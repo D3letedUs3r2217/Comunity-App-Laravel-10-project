@@ -22,7 +22,7 @@
         <li id="profile"><h3> {{ $profileName }} </h3></li>
 
     </ul>
-
+        <button><a href="{{route('logout')}}">Logout</a></button>
 </aside>
 
     
@@ -45,7 +45,7 @@
         <input type="number" name="ComunityId" id="ComunityId" maxlength="4"><br>
         <button type="submit" id="insert-id">Enter Comunity</button>
         <button id="insert-id"><a href="{{ route('createC') }}">Create Comunity</a></button>
-
+        
     </form>
 </div>
 </body>        

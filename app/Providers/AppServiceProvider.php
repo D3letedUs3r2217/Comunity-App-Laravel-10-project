@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Auth\ComunityGuard;
+use App\Models\Comunity;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+    //  Auth::extend('comunity', function ($app, $name, array $config) {
+    //     return new ComunityGuard(
+    //         $name,
+    //         Auth::createUserProvider($config['provider']),
+    //         $app['session.store']
+    //     );
+    //  });
     }
 }

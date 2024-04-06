@@ -11,6 +11,7 @@
     
     <h1>{{ $sendby }}</h1>
     <h2>{{ $message }}</h2>
+    <h1>{{$ComunityName}}</h1>
 
 </body>
 </html>

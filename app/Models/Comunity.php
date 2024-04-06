@@ -4,25 +4,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Contracts\Auth\Authenticatable;
+// use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 
-class Comunities extends Model
+class Comunity extends Model
 {
     use HasFactory;
 
+
+    protected $table = 'comunities';
+
     protected $fillable = [
-     'code', 'nome', 'type'
+     'code', 'nome', 'type', 'admin'
     ];
 
     protected static function boot(){
         parent::boot();
 
         static::creating(function ($model) {
+
             $model->randomCode();
+ 
         });
     }
         protected function randomCode(){
-
+    
         do {
+
             $code = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
         } while (static::where('code', $code)->exists());
 

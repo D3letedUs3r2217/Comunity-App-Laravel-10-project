@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('main')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <section class="schoolStyle">
 
@@ -40,9 +41,16 @@
     
     </main>
 
-            
+    <div id="shareIcon" class="shareIcon">
+        <button id="sharecodebtn"><i class="fa-solid fa-share"></i></button>
+    </div>
+    </section>
+
+    <div id="codeShare" class="shareCode">
+        <h2>Code: {{$code}}</h2>
+    </div>
 
         </section>
             <script src="{{asset('js/chat-comunity.js')}}"></script>
-
+            <script src="{{asset('js/comunityMain.js')}}"></script>
 @endsection

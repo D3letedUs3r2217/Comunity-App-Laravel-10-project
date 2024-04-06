@@ -14,10 +14,10 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'web', /*'comunity',*/
+        'passwords' => 'users'
     ],
-
+//'comunity'
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -38,8 +38,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'users', 
         ],
+        'comunity' => [
+            'driver' => 'session',
+            'provider' => 'comunities'            
+        ]
     ],
 
     /*
@@ -62,8 +66,12 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\User::class
         ],
+        'comunities' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Comunity::class
+        ]
 
         // 'users' => [
         //     'driver' => 'database',
