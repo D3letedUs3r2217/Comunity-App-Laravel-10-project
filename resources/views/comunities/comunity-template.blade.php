@@ -32,6 +32,7 @@
             <li><a href="">page</a></li>
 
         </ul>
+        <button><a href="{{route('main.route')}}">Leave</a></button>
     </nav>
 <div class="content">
 

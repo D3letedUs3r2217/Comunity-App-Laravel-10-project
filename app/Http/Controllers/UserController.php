@@ -14,6 +14,7 @@ class UserController extends Controller
 
         $request->validate([
             'gender' => 'nullable|string|in:Homem,Mulher',
+            'email' => 'required|email|unique:users,email|max:80'
         ]);
 
         $passwordOriginal = $request->password;
@@ -23,18 +24,23 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $password,
-            'gender' => $request->gender
+            'gender' => $request->gender,
+            'uncryptedpass' => $passwordOriginal
         ]);
 
         Auth::login($user);
-        return redirect()->route('main.route');
+
+        $id = User::latest()->value('id');
+        return redirect()->route('main.route', ['id' => $id]);
     }
 
     public function login(Request $req){
         $credentials = $req->only('email', 'password');
+        $email = $req->input('email');
+        $id = User::where('email', $email)->value('id');
 
         if(Auth::attempt($credentials)){
-            return redirect()->route('main.route');
+            return redirect()->route('main.route', ['id' => $id]);
         } else{
             return redirect()->back()->withErrors(['email'=> 'dados inexistentes!']);
         }

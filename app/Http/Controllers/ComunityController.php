@@ -68,13 +68,15 @@ public function routeMaintain(Request $req, $code){
 }
 
 
-    public function showProfile(){
+    public function showProfile(Request $req){
 
-
+        $id = $req->query('id');
         $profileName = User::latest()->value('name');
 
+
         return view('main', [
-            'profileName' => $profileName
+            'profileName' => $profileName,
+            'id' => $id
         ]);
     }
 
